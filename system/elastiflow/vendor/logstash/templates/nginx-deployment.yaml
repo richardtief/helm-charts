@@ -21,15 +21,6 @@ spec:
         release: {{ .Release.Name | quote }}
     spec:
       affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - elastiflow-logstash
-            topologyKey: "kubernetes.io/hostname"
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -37,7 +28,7 @@ spec:
               - key: app
                 operator: In
                 values:
-                - elastiflow-logstash-nginx
+                - elastiflow-logstash-nginx-decode
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: {{ template "logstash.fullname" . }}-nginx
@@ -55,5 +46,3 @@ spec:
             items:
               - key: nginx.conf
                 path: nginx.conf
-              - key: virtualhost.conf
-                path: virtualhost/virtualhost.conf
