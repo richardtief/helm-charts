@@ -87,9 +87,7 @@ persistence:
   enabled: false
   annotations: {}
 
-extraVolumes: ""
-  # - name: extras
-  #   emptyDir: {}
+extraVolumes: |
   - name: nginx-conf
       configMap:
         name: elastiflow-nginx-proxy-conf
