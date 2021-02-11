@@ -32,7 +32,7 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: {{ template "logstash.fullname" . }}-nginx
-        image: haproxy
+        image: nginx
         ports:
 {{ toYaml .Values.nginx.ports | indent 8 }}
         volumeMounts:
