@@ -28,7 +28,7 @@ spec:
               - key: app
                 operator: In
                 values:
-                - elastiflow-logstash-nginx-decode
+                - elastiflow-logstash
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: {{ template "logstash.fullname" . }}-nginx
