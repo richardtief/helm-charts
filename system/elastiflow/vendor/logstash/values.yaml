@@ -87,7 +87,13 @@ persistence:
   enabled: false
   annotations: {}
 
-extraVolumes: ""
+extraVolumes: |
+  - name: nginx-conf	
+    configMap:	
+      name: elastiflow-nginx-proxy-conf	
+      items:	
+        - key: nginx.conf	
+          path: nginx.conf
 
 extraVolumeMounts: ""
   # - name: extras
@@ -100,6 +106,15 @@ extraContainers: |
     ports:
       - name: metrics
         containerPort: 9198
+  - name: nginx-proxy	
+    image: nginx	
+    ports:	
+      - name: proxy	
+        containerPort: 2057	
+    volumeMounts:	
+      - mountPath: /etc/nginx	
+        readOnly: true	
+        name: nginx-conf
 extraInitContainers: ""
   # - name: do-something
   #   image: busybox
