@@ -90,7 +90,7 @@ persistence:
 extraVolumes: |
   - name: nginx-conf	
     configMap:	
-      name: elastiflow-nginx-proxy-conf	
+      name: elastiflow-nginx-config
       items:	
         - key: nginx.conf	
           path: nginx.conf
@@ -106,7 +106,7 @@ extraContainers: |
     ports:
       - name: metrics
         containerPort: 9198
-  - name: elastiflow-nginx-config
+  - name: nginx-proxy	
     image: nginx	
     ports:	
       - name: proxy	
