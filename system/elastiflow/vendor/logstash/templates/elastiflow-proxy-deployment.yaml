@@ -35,14 +35,3 @@ spec:
         image: keppel.eu-de-1.cloud.sap/ccloud/elastiflow-proxy:test
         ports:
 {{ toYaml .Values.nginx.ports | indent 8 }}
-        volumeMounts:
-        - mountPath: /etc/nginx
-          readOnly: true
-          name: nginx-conf
-      volumes:
-        - name: nginx-conf
-          configMap:
-            name: elastiflow-nginx-config
-            items:
-              - key: nginx.conf
-                path: nginx.conf

@@ -106,7 +106,7 @@ extraContainers: |
     ports:
       - name: metrics
         containerPort: 9198
-  - name: nginx-proxy	
+  - name: elastiflow-nginx-config
     image: nginx	
     ports:	
       - name: proxy	
