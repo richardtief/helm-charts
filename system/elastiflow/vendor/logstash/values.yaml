@@ -94,6 +94,12 @@ extraVolumes: |
       items:	
         - key: nginx.conf	
           path: nginx.conf
+  - name: envoy-conf	
+    configMap:	
+      name: elastiflow-envoy-config
+      items:	
+        - key: envoy.yaml	
+          path: envoy.yaml
 
 extraVolumeMounts: ""
   # - name: extras
@@ -106,15 +112,25 @@ extraContainers: |
     ports:
       - name: metrics
         containerPort: 9198
-  - name: nginx-proxy	
-    image: nginx-unprivileged
-    ports:	
-      - name: proxy	
-        containerPort: 2057	
+  # - name: nginx-proxy	
+  #   image: nginx-unprivileged
+  #   ports:	
+  #     - name: proxy	
+  #       containerPort: 2057	
+  #   volumeMounts:	
+  #     - mountPath: /etc/nginx	
+  #       readOnly: true	
+  #       name: nginx-conf
+  - name: envoy-proxy
+    image: envoy
+    ports:
+      - name: proxy
+        containerPort: 2057
     volumeMounts:	
-      - mountPath: /etc/nginx	
+      - mountPath: /etc/envoy	
         readOnly: true	
-        name: nginx-conf
+        name: envoy.conf
+
 extraInitContainers: ""
   # - name: do-something
   #   image: busybox

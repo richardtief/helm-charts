@@ -1,0 +1,43 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: elastiflow-nginx-config
+  labels:
+    app: "{{ template "logstash.fullname" . }}-nginx"
+    chart: "{{ .Chart.Name }}"
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+data:
+  envoy.yaml: |
+    static_resources:
+      listeners:
+      - name: netflow_udp_proxied
+          reuse_port: true
+          address:
+          socket_address:
+              protocol: UDP
+              address: 0.0.0.0
+              port: 2057
+          listener_filters:
+          - name: envoy.filters.listener.proxy_protocol
+          typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.listener.proxy_protocol.v3.ProxyProtocol
+          - name: envoy.filters.udp_listner.udp_proxy
+          typed_config:
+              '@type': type.googleapis.com/envoy.extensions.filters.udp.udp_proxy.v3.UdpProxyConfig
+              stat_prefix: service
+              cluster: service_udp
+      clusters:
+      - name: service_udp
+          connect_timeout: 0.25s
+          type: STATIC
+          lb_policy: ROUND_ROBIN
+          load_assignment:
+          cluster_name: service_udp
+          endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                  socket_address:
+                      address: 127.0.0.1
+                      port_value: 2055
