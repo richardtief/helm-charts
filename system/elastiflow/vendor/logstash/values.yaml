@@ -107,7 +107,7 @@ extraContainers: |
       - name: metrics
         containerPort: 9198
   - name: nginx-proxy	
-    image: nginx	
+    image: nginx-unprivileged
     ports:	
       - name: proxy	
         containerPort: 2057	
