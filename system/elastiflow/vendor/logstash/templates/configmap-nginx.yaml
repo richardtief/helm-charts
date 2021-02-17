@@ -20,13 +20,13 @@ data:
     stream {
 
       upstream logstash_udp_upstream {
-        server localhost:2055;
+        server elastiflow-logstash:2055;
       }
       server {
-          listen 2057 udp proxy_protocol;
+          listen 2055 udp;
           proxy_pass logstash_udp_upstream;
           proxy_responses 0;
           proxy_buffer_size 16384k;
-          proxy_bind $proxy_protocol_addr:$proxy_protocol_port transparent;
+          proxy_bind $remote_addr transparent;
       }
     }
