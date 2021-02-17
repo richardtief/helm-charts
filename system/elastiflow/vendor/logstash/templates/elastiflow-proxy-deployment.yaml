@@ -36,8 +36,8 @@ spec:
         image: nginx
         volumeMounts:
         - mountPath: /etc/nginx	
-            readOnly: true	
-            name: nginx-conf
+          readOnly: true	
+          name: nginx-conf
         ports:
 {{ toYaml .Values.nginx.ports | indent 8 }}
       volumes:
