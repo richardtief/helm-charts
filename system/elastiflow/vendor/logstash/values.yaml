@@ -122,14 +122,14 @@ extraContainers: |
   #       readOnly: true	
   #       name: nginx-conf
   - name: envoy-proxy
-    image: envoy
+    image: keppel.eu-de-1.cloud.sap/ccloud-dockerhub-mirror/envoyproxy/envoy:v1.17-latest
     ports:
       - name: proxy
         containerPort: 2057
     volumeMounts:	
       - mountPath: /etc/envoy	
         readOnly: true	
-        name: envoy.conf
+        name: envoy-conf
 
 extraInitContainers: ""
   # - name: do-something
