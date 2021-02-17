@@ -42,14 +42,14 @@ spec:
 {{ toYaml .Values.nginx.ports | indent 8 }}
       volumes:
         - name: nginx-conf	
-            configMap:	
+          configMap:	
             name: elastiflow-nginx-config
             items:	
-                - key: nginx.conf	
+              - key: nginx.conf	
                 path: nginx.conf
         - name: envoy-conf	
-            configMap:	
+          configMap:	
             name: elastiflow-envoy-config
             items:	
-                - key: envoy.yaml	
+              - key: envoy.yaml	
                 path: envoy.yaml
