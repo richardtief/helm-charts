@@ -87,19 +87,7 @@ persistence:
   enabled: false
   annotations: {}
 
-extraVolumes: |
-  - name: nginx-conf	
-    configMap:	
-      name: elastiflow-nginx-config
-      items:	
-        - key: nginx.conf	
-          path: nginx.conf
-  - name: envoy-conf	
-    configMap:	
-      name: elastiflow-envoy-config
-      items:	
-        - key: envoy.yaml	
-          path: envoy.yaml
+extraVolumes: ""
 
 extraVolumeMounts: ""
   # - name: extras
@@ -112,24 +100,6 @@ extraContainers: |
     ports:
       - name: metrics
         containerPort: 9198
-  # - name: nginx-proxy	
-  #   image: nginx-unprivileged
-  #   ports:	
-  #     - name: proxy	
-  #       containerPort: 2057	
-  #   volumeMounts:	
-  #     - mountPath: /etc/nginx	
-  #       readOnly: true	
-  #       name: nginx-conf
-  # - name: envoy-proxy
-  #   image: keppel.eu-de-1.cloud.sap/ccloud-dockerhub-mirror/envoyproxy/envoy:v1.17-latest
-  #   ports:
-  #     - name: proxy
-  #       containerPort: 2057
-  #   volumeMounts:	
-  #     - mountPath: /etc/envoy	
-  #       readOnly: true	
-  #       name: envoy-conf
 
 extraInitContainers: ""
   # - name: do-something

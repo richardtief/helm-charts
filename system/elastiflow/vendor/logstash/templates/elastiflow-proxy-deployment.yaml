@@ -32,7 +32,6 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: {{ template "logstash.fullname" . }}-proxy
-        # image: keppel.eu-de-1.cloud.sap/ccloud/elastiflow-proxy:test
         image: nginx
         volumeMounts:
         - mountPath: /etc/nginx	

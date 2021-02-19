@@ -20,7 +20,8 @@ data:
     stream {
 
       upstream logstash_udp_upstream {
-        server elastiflow-logstash:2055;
+        server elastiflow-logstash-0.elastiflow-logstash-svc:2055;
+        server elastiflow-logstash-1.elastiflow-logstash-svc:2055;
       }
       server {
           listen 2055 udp;
