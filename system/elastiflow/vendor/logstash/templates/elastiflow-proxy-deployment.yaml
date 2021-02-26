@@ -21,15 +21,6 @@ spec:
         release: {{ .Release.Name | quote }}
     spec:
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                - minion5.cc.qa-de-1.cloud.sap
-                - minion8.cc.qa-de-1.cloud.sap
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
