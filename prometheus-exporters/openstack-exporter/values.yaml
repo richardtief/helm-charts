@@ -21,4 +21,3 @@ openstack:
    project_name: cloud_admin
 global:
    region: DEFINED-IN-REGION-SECRETS
-   master_password: DEFINED-IN-REGION-SECRETS
